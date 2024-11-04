@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@utils/*": ["./src/utils/*"],
+      "@api/*": ["./src/services/api/*"],
+      "@socket/*": ["./src/services/sockets/*"],
+      "@rtk/*": ["./src/redux-tool-kit/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@components/*": ["./src/components/*"],
+      "@colors/*": ["./src/colors/variable.scss"],
+      "@assets/*": ["./src/assets/*"]
+    }
+  }
+}
