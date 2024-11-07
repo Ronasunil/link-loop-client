@@ -6,13 +6,21 @@ import { staticService } from "@utils/staticService";
 import { authService } from "@api/auth/AuthService";
 
 import "../signin/signin.scss";
+import { useLocalStorage } from "@hooks/useLocalStorage";
+import { user } from "@utils/User";
+import { useDispatch } from "react-redux";
 function Signup() {
+  const dispatch = useDispatch();
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [msgInfo, setMsgInfo] = useState({ msg: "", alertName: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const [add] = useLocalStorage("user", {
+    username: "",
+    loggedin: false,
+  });
 
   const handleSignup = async function (e) {
     e.preventDefault();
@@ -32,6 +40,12 @@ function Signup() {
       console.log(data);
       const res = await authService.signup(data);
       setMsgInfo({ alertName: "alert-success", msg: res.data.message });
+
+      // adding user information to localstorage
+      add({ username: res.data.user.userName, loggedin: true });
+
+      // dispatching action
+      user.dispatchUser(res.data, dispatch);
     } catch (err) {
       console.log(err.response);
       setIsLoading(false);
