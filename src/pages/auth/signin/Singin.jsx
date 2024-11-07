@@ -1,16 +1,24 @@
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import Button from "@components/button/Button";
 import Input from "@components/input/Input";
 import "./signin.scss";
 import { authService } from "@api/auth/AuthService";
 import { useState } from "react";
+import { useLocalStorage } from "@hooks/useLocalStorage";
+import { user } from "@utils/User";
 
 function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msgInfo, setMsgInfo] = useState({ msg: "", alertName: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const [add] = useLocalStorage("user", {
+    username: "",
+    loggedin: false,
+  });
 
   const handleSignin = async function (e) {
     e.preventDefault();
@@ -18,7 +26,14 @@ function Signin() {
     try {
       setIsLoading(true);
       const res = await authService.singin(data);
+
       setMsgInfo({ msg: res.data.message, alertName: "alert-success" });
+
+      // adding user information to localstorage
+      add({ username: res.data.user.userName, loggedin: true });
+      console.log(res.data);
+      // dispatching action
+      user.dispatchUser(res.data, dispatch);
     } catch (err) {
       setIsLoading(false);
       setMsgInfo({
@@ -60,10 +75,6 @@ function Signin() {
             onChange={(e) => setPassword(e.target.value)}
             type="password"
           />
-          <label className="checkmark-container" htmlFor="checkbox">
-            <input id="checkbox" type="checkbox" name="checkbox" />
-            Keep me signed in
-          </label>
         </div>
         {/* button component */}
         <Button
