@@ -20,6 +20,21 @@ class AuthService {
     const res = await axios.post(`/resetPassword/${token}`, data);
     return res;
   }
+
+  async signout() {
+    try {
+      const res = await axios.delete("/signout");
+      return res;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  }
+
+  async currentUser() {
+    const res = await axios.get("/currentUser");
+    return res;
+  }
 }
 
 export const authService = new AuthService();

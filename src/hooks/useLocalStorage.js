@@ -1,20 +1,9 @@
-import { useState } from "react";
-
-export function useLocalStorage(key, initalValue) {
-  const [value, setValue] = useState(() => {
-    try {
-      const jsonValue = window.localStorage.getItem(key);
-      const parsedValue = jsonValue ? JSON.parse(jsonValue) : initalValue;
-      return parsedValue;
-    } catch {
-      return undefined;
-    }
-  });
-
+export function useLocalStorage(key) {
   const add = function (value) {
     try {
       const jsonValue = JSON.stringify(value);
       window.localStorage.setItem(key, jsonValue);
+      return jsonValue;
     } catch (err) {
       console.log(err.message);
     }
@@ -22,12 +11,12 @@ export function useLocalStorage(key, initalValue) {
 
   const remove = function () {
     try {
+      console.log("lop");
       window.localStorage.removeItem(key);
-      setValue(null);
     } catch (err) {
       console.log(err.message);
     }
   };
 
-  return [remove, add, value];
+  return [remove, add];
 }

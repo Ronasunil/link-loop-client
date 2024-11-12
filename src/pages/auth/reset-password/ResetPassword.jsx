@@ -47,10 +47,7 @@ function ResetPassword() {
                     {msgInfo.msg}
                   </div>
                 )}
-                <form
-                  onSubmit={handleResetPassword}
-                  className="reset-password-form"
-                >
+                <form onSubmit={handleResetPassword} className="reset-password-form">
                   <div className="form-input-container">
                     <Input
                       id="password"
@@ -76,10 +73,7 @@ function ResetPassword() {
                       value={confirmPassword}
                     />
                   </div>
-                  <Button
-                    disabled={!password || !confirmPassword || isLoading}
-                    className="auth-button button"
-                  >
+                  <Button disabled={!password || !confirmPassword || isLoading} className="auth-button button">
                     {isLoading ? "Loading..." : "Reset password"}
                   </Button>
 

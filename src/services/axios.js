@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default axios.create({
+const instance = axios.create({
   baseURL: `${process.env.API_URL}/api/v1`,
   headers: {
     "Content-type": "application/json",
@@ -8,3 +8,5 @@ export default axios.create({
   },
   withCredentials: true,
 });
+
+export default instance;
