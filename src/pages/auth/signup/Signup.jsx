@@ -25,7 +25,7 @@ function Signup() {
   const handleSignup = async function (e) {
     e.preventDefault();
     const avatarColor = staticService.generateRandomColor();
-    const avatarImage = staticService.generateAvatarImg(userName[0]);
+    const avatarImage = staticService.generateAvatarImg(userName[0], avatarColor);
     const data = {
       userName,
       email,
@@ -37,12 +37,12 @@ function Signup() {
 
     try {
       setIsLoading(true);
-      console.log(data);
+
       const res = await authService.signup(data);
       setMsgInfo({ alertName: "alert-success", msg: res.data.message });
 
       // adding user information to localstorage
-      add({ username: res.data.user.userName, loggedin: true });
+      add({ username: res.data.user.name, loggedin: true });
 
       // dispatching action
       user.dispatchUser(res.data, dispatch);
@@ -111,9 +111,7 @@ function Signup() {
         </div>
 
         <Button
-          disabled={
-            !userName || !password || !confirmPassword || !email || isLoading
-          }
+          disabled={!userName || !password || !confirmPassword || !email || isLoading}
           className="auth-button button"
         >
           {isLoading ? "Loading..." : "Signup"}

@@ -10,7 +10,8 @@
       "@hooks/*": ["./src/hooks/*"],
       "@components/*": ["./src/components/*"],
       "@colors/*": ["./src/colors/variable.scss"],
-      "@assets/*": ["./src/assets/*"]
+      "@assets/*": ["./src/assets/*"],
+      "@services/*": ["./src/services/*"]
     }
   }
 }

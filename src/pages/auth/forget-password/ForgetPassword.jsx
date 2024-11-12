@@ -45,10 +45,7 @@ function ForgetPassword() {
                     {msgInfo.msg}
                   </div>
                 )}
-                <form
-                  onSubmit={handleForgotPassword}
-                  className="forgot-password-form"
-                >
+                <form onSubmit={handleForgotPassword} className="forgot-password-form">
                   <div className="form-input-container">
                     <Input
                       placeholder="sample@email.com"
@@ -62,10 +59,7 @@ function ForgetPassword() {
                     />
                   </div>
 
-                  <Button
-                    disabled={isLoading || !email}
-                    className="auth-button button"
-                  >
+                  <Button disabled={isLoading || !email} className="auth-button button">
                     {isLoading ? "Loading..." : "Submit"}
                   </Button>
                   <Link to="/" className="forgot-password-text">

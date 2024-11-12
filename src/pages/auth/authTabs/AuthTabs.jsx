@@ -3,9 +3,14 @@ import "./authTabs.scss";
 
 import Signin from "@pages/auth/signin/Singin";
 import Signup from "@pages/auth/signup/Signup";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 function AuthTabs() {
   const [type, setType] = useState("signIn");
+  const { isLoggedIn } = useSelector((state) => state.user);
+
+  if (isLoggedIn) return <Navigate to="/app/home" replace={true} />;
 
   return (
     <div className="container-wrapper">

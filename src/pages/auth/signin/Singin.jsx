@@ -15,10 +15,7 @@ function Signin() {
   const [msgInfo, setMsgInfo] = useState({ msg: "", alertName: "" });
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const [add] = useLocalStorage("user", {
-    username: "",
-    loggedin: false,
-  });
+  const [remove, add] = useLocalStorage("user");
 
   const handleSignin = async function (e) {
     e.preventDefault();
@@ -30,7 +27,7 @@ function Signin() {
       setMsgInfo({ msg: res.data.message, alertName: "alert-success" });
 
       // adding user information to localstorage
-      add({ username: res.data.user.userName, loggedin: true });
+      add({ profile: res.data.user.name, loggedin: true });
       console.log(res.data);
       // dispatching action
       user.dispatchUser(res.data, dispatch);
@@ -77,10 +74,7 @@ function Signin() {
           />
         </div>
         {/* button component */}
-        <Button
-          disabled={!email || !password || isLoading}
-          className="auth-button button"
-        >
+        <Button disabled={!email || !password || isLoading} className="auth-button button">
           {isLoading ? "Loading..." : "Signin"}
         </Button>
         <Link to="/forget-password" className="forgot-password">

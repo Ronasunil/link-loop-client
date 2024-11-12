@@ -23,6 +23,7 @@ export default defineConfig({
       "@components": path.resolve(__dirname, "./src/components"),
       "@colors": path.resolve(__dirname, "./src/colors/variable.scss"),
       "@assets": path.resolve(__dirname, "./src/assets"),
+      "@services": path.resolve(__dirname, "./src/services"),
     },
   },
 });
