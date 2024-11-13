@@ -27,10 +27,11 @@ function Signin() {
       setMsgInfo({ msg: res.data.message, alertName: "alert-success" });
 
       // adding user information to localstorage
-      add({ profile: res.data.user.name, loggedin: true });
+      console.log(add({ profile: res.data.user.name, loggedin: true }));
       console.log(res.data);
       // dispatching action
       user.dispatchUser(res.data, dispatch);
+      console.log("happening");
     } catch (err) {
       setIsLoading(false);
       setMsgInfo({
