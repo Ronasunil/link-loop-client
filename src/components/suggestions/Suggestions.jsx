@@ -7,7 +7,7 @@ import "./suggestions.scss";
 
 function Suggestions() {
   const { data } = useSWR("/users/random", swr.fetcherGet);
-  console.log(data);
+
   return (
     <div className="suggestions-list-container" data-testid="suggestions-container">
       <div className="suggestions-header">

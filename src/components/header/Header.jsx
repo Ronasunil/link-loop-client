@@ -13,6 +13,7 @@ import { deleteUser } from "@rtk/slice/user/userSlice";
 import { useLocalStorage } from "@hooks/useLocalStorage";
 import { authService } from "@api/auth/AuthService";
 import HeaderSkeleton from "./HeaderSkeleton";
+import { notificationService } from "@api/notification/NotificationService";
 
 function Header() {
   // hooks
@@ -26,6 +27,7 @@ function Header() {
   const [remove] = useLocalStorage("user");
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
+  const { notifications } = useSelector((state) => state.notifications);
 
   // functions props for Dropdown component
   const deleteNotification = () => {};
@@ -38,7 +40,11 @@ function Header() {
     // signout api call
     await authService.signout();
   };
-  const markAsRead = () => {};
+
+  const markAsRead = async (notificationId) => {
+    await notificationService.markAsRead(notificationId);
+  };
+
   return !profile ? (
     <HeaderSkeleton />
   ) : (
@@ -83,7 +89,7 @@ function Header() {
                   <li className="dropdown-li">
                     <Dropdown
                       height={300}
-                      data={[]}
+                      data={notifications}
                       notificationCount={0}
                       onDeleteNotification={deleteNotification}
                       onLogout={logout}
@@ -144,8 +150,6 @@ function Header() {
                       notificationCount={0}
                       onLogout={logout}
                       onNavigate={() => navigate("/app/profile")}
-                      title="Settings"
-                      onMarkAsRead={markAsRead}
                       style={{ right: "150px", top: "40px" }}
                     />
                   </li>

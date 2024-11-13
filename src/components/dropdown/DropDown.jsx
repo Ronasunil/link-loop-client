@@ -48,7 +48,7 @@ const Dropdown = ({
                     className="content-body"
                     onClick={() => {
                       if (title === "Notifications") {
-                        onMarkAsRead(item);
+                        onMarkAsRead(item._id);
                       } else {
                         onNavigate();
                       }
