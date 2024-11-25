@@ -198,6 +198,7 @@ export const reactionsMap = {
   like,
   love,
   wow,
+  happy,
   sad,
   excited,
   angry,

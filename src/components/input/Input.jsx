@@ -2,17 +2,7 @@ import PropTypes from "prop-types";
 
 import "./input.scss";
 
-function Input({
-  label,
-  placeholder,
-  type,
-  value = "",
-  labelText,
-  id,
-  name,
-  className,
-  onChange,
-}) {
+function Input({ label, placeholder, type, value = "", labelText, id, name, className, onChange }) {
   return (
     <div className="form-row">
       {label && (
@@ -27,7 +17,7 @@ function Input({
         value={value}
         id={id}
         onChange={onChange}
-        className={!className && "form-input"}
+        className={!className ? "form-input" : className}
       />
     </div>
   );
