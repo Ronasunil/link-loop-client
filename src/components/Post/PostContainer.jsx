@@ -45,7 +45,7 @@ function PostContainer() {
   useEffect(() => {
     getPosts(page);
   }, [page]);
-  console.log();
+
   return (
     <>
       <ReactionsModal isOpen={isOpen} ref={reactionsRef} />
@@ -54,7 +54,7 @@ function PostContainer() {
         dataLength={posts.length}
         hasMore={hasMore}
         height={"100vh"}
-        loader={<h4>Loading...</h4>}
+        loader={<h4>>Loading...</h4>}
         next={fetchMorePost}
       >
         {posts.map((post, i) => {

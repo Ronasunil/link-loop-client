@@ -45,12 +45,3 @@ class PostService {
 }
 
 export const postService = new PostService();
-
-const getObjValues = function (obj) {
-  const newObj = {};
-  for (const [key, value] of Object.entries(obj)) {
-    if (value) newObj[key] = value;
-  }
-
-  return newObj;
-};
