@@ -9,7 +9,7 @@ const ForgetPassword = lazy(() => import("@pages/auth/forget-password/ForgetPass
 const Home = lazy(() => import("@pages/home/Home"));
 const Streams = lazy(() => import("@components/streams/Streams"));
 const Chat = lazy(() => import("@pages/home/chat/Chat"));
-const People = lazy(() => import("@pages/home/people/People"));
+const Peoples = lazy(() => import("@pages/home/peoples/Peoples"));
 const Followings = lazy(import("@pages/home/followings/Followings"));
 const Followers = lazy(() => import("@pages/home/followers/Followers"));
 const Photos = lazy(() => import("@pages/home/photos/Photos"));
@@ -57,8 +57,12 @@ function AppRouter() {
         },
 
         {
-          path: "people",
-          element: <People />,
+          path: "peoples",
+          element: (
+            <Suspense fallback={<h1></h1>}>
+              <Peoples />
+            </Suspense>
+          ),
         },
 
         {
@@ -72,7 +76,7 @@ function AppRouter() {
 
         { path: "notifications", element: <Notifications /> },
 
-        { path: "profile", element: <Profile /> },
+        { path: "profile/:userId", element: <Profile /> },
       ],
     },
 

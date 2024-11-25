@@ -96,6 +96,7 @@ class StaticService {
   }
 
   checkUserIsFollowed(followersList, userId) {
+    console.log(followersList, userId);
     return followersList.some((user) => user._id === userId);
   }
 

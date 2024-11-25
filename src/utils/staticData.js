@@ -40,8 +40,8 @@ export const sideBarItems = [
   },
   {
     index: 3,
-    name: "People",
-    url: "/app/people",
+    name: "Peoples",
+    url: "/app/peoples",
     iconName: "FaUsers",
   },
   {
