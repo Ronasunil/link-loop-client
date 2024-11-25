@@ -19,7 +19,7 @@ function Suggestions() {
           {data?.users?.map((user, index) => (
             <div data-testid="suggestions-item" className="suggestions-item" key={index}>
               <Avatar imgSrc={user?.profileImg} size={50} />
-              <div className="title-text">{user?.username}</div>
+              <div className="title-text">{user?.name}</div>
               <div className="add-icon">
                 <Button label="Follow" className="button follow" disabled={false}>
                   Follow

@@ -11,11 +11,11 @@ function ProtectedRoute({ children }) {
   const dispatch = useDispatch();
   const [remove] = useLocalStorage("user");
 
-  if ((error || !user) && !isLoading) {
-    remove();
-    dispatch(deleteUser());
-    return <Navigate replace={true} to="/" />;
-  }
+  // if ((error || !user) && !isLoading) {
+  //   remove();
+  //   dispatch(deleteUser());
+  //   return <Navigate replace={true} to="/" />;
+  // }
 
   return children;
 }

@@ -5,14 +5,13 @@ export default function useOutsideClick(ref, initialState) {
 
   useEffect(() => {
     const onClick = function (e) {
-      if (ref.current && !ref.current.contains(e.target))
-        setIsOpen((state) => !state);
+      if (ref.current && !ref.current.contains(e.target)) setIsOpen((state) => !state);
     };
 
     if (isOpen) window.addEventListener("mousedown", onClick);
 
     return () => window.removeEventListener("mousedown", onClick);
-  }, [ref]);
+  }, [ref, isOpen]);
 
   return [isOpen, setIsOpen, ref];
 }
